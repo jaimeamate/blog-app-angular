@@ -12,6 +12,14 @@
         <button type="submit">Agregar noticia</button>
     </section>
     <section id="seccion-noticias">
-        <!-- por cada noticia un article -->
+        <!-- por cada noticia un article -->        
+        @for (noticia of noticias; track $index) {
+            <article>
+                <p>{{noticia.titulo}}</p>
+                <img [src]="noticia.imagen" [alt]="noticia.titulo">
+                <p>{{noticia.descripcion}}</p>
+                <span>{{noticia.fecha}}</span>
+            </article>
+        }
     </section>
 </main>
