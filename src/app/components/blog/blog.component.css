@@ -19,5 +19,7 @@ main {
     & #seccion-noticias{
         background-color: aliceblue;
         flex: 1;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
     }
 }
