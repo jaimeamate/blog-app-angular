@@ -1,0 +1,23 @@
+main {
+    display: flex;
+    justify-content: space-between;
+    height: 50vh;
+    gap: 20px;
+    & #seccion-formulario{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: gold;
+        flex: 1;
+        & input, label, button, textarea {
+            display: block;
+            margin: 5px 20px;
+            resize: none;
+        }
+    }
+    & #seccion-noticias{
+        background-color: aliceblue;
+        flex: 1;
+    }
+}
