@@ -1,20 +1,21 @@
 <main>
     <section id="seccion-formulario">
         <label for="titulo">Titulo</label>
-        <input type="text" id="titulo" required>
+        <input type="text" id="titulo" required [(ngModel)]="noticiaActual.titulo">
 
         <label for="imagen">Imagen</label>
-        <input type="file" id="imagen" accept=".png,.jpg,.jpeg" required>
+        <input type="file" id="imagen" accept=".png,.jpg,.jpeg" required (change)="capturarImagen($event)" [(ngModel)]="noticiaActual.imagen">
 
         <label for="descripcion">Descripcion de la noticia</label>
-        <textarea id="descripcion" cols="100" rows="10" required></textarea>
+        <textarea id="descripcion" cols="100" rows="10" required [(ngModel)]="noticiaActual.descripcion"></textarea>
         <!-- <input type="text" id="descripcion"> -->
-        <button type="submit">Agregar noticia</button>
+        <!-- no agrego el input date porque lo suyo seria que la fecha de publicación sea del dia que se cree la noticia -->
+        <button (click)="agregarNoticia()">Agregar noticia</button>
     </section>
     <section id="seccion-noticias">
         <!-- por cada noticia un article -->        
         @for (noticia of noticias; track $index) {
-            <article>
+            <article class="noticia">
                 <p>{{noticia.titulo}}</p>
                 <img [src]="noticia.imagen" [alt]="noticia.titulo">
                 <p>{{noticia.descripcion}}</p>

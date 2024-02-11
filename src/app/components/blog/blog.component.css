@@ -21,5 +21,12 @@ main {
         flex: 1;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        height: min-content;
+        gap: 15px;
+        padding: 15px;
+        & .noticia{
+            padding: 10px;
+            background-color: aquamarine;   
+        }
     }
 }
