@@ -10,6 +10,8 @@
         <textarea id="descripcion" cols="100" rows="10" required [(ngModel)]="noticiaActual.descripcion"></textarea>
         <!-- <input type="text" id="descripcion"> -->
         <!-- no agrego el input date porque lo suyo seria que la fecha de publicación sea del dia que se cree la noticia -->
+        <label for="fecha">Fecha</label>
+        <input type="date" id="fecha" pattern="\d{4}-\d{2}-\d{2}" [(ngModel)]="noticiaActual.fecha">
         <button (click)="agregarNoticia()">Agregar noticia</button>
     </section>
     <section id="seccion-noticias">

@@ -13,13 +13,13 @@ export class BlogComponent{
   noticias: Noticia[] = [
     {
       titulo: "Viaje a la playa",
-      imagen: "url_de_la_imagen_1.jpg",
+      imagen: "https://placehold.co/600x400.png",
       descripcion: "Disfruta de unas vacaciones relajantes en la costa. Arena blanca, aguas cristalinas y un clima perfecto te esperan.",
       fecha: "2024-07-15"    
     },
     {
       titulo: "Curso de programación en línea",
-      imagen: "url_de_la_imagen_2.jpg",
+      imagen: "https://placehold.co/600x400.png",
       descripcion: "Aprende a programar desde cero con nuestro curso en línea. Python, JavaScript, HTML, CSS y mucho más.",
       fecha: "2024-03-01"
     }
@@ -34,8 +34,8 @@ export class BlogComponent{
   agregarNoticia(): void {
     const camposOk: boolean = this.comprobarCampos()
     if(camposOk){
-      const fechaActual = new Date().toISOString().slice(0,10).replace(/-/g, "/");
-      this.noticiaActual.fecha = fechaActual
+      // const fechaActual = new Date().toISOString().slice(0,10).replace(/-/g, "/");
+      // this.noticiaActual.fecha = fechaActual
       //push new noticia
       this.noticias.push(this.noticiaActual)
       //clear reference
@@ -51,12 +51,21 @@ export class BlogComponent{
     if(this.noticiaActual.titulo.trim() === ''){
       alert('Por favor, rellena el campo titulo')
       return false
-    }else if(this.noticiaActual.descripcion.trim() === ''){
+    }
+    if(this.noticiaActual.imagen.trim() === ''){
+      alert('Por favor, rellena el campo imagen')
+      return false
+    }
+    if(this.noticiaActual.descripcion.trim() === ''){
       alert('Por favor, rellena el campo descripcion')
       return false
-    }else{
-      return true
     }
+    if(this.noticiaActual.fecha.trim() === ''){
+      alert('Por favor, rellena el campo fecha')
+      return false
+    }
+    
+    return true
   }
   //capturing de selected img and converting it to base64
   capturarImagen(ev:any): void{
