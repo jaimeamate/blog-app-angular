@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './blog.component.css'
 })
 export class BlogComponent{
+  user: string = 'editor'
   noticias: Noticia[] = [
     {
       titulo: "Viaje a la playa",
@@ -46,6 +47,9 @@ export class BlogComponent{
         fecha: ""
       }
     }
+  }
+  borrarNoticia(indexNoticia:number){
+    this.noticias.splice(indexNoticia,1)
   }
   comprobarCampos(): boolean {
     if(this.noticiaActual.titulo.trim() === ''){

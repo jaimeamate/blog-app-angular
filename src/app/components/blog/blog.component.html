@@ -1,28 +1,40 @@
-<main>
-    <section id="seccion-formulario">
-        <label for="titulo">Titulo</label>
-        <input type="text" id="titulo" required [(ngModel)]="noticiaActual.titulo">
-
-        <label for="imagen">Imagen</label>
-        <input type="file" id="imagen" accept=".png,.jpg,.jpeg" required (change)="capturarImagen($event)" [(ngModel)]="noticiaActual.imagen">
-
-        <label for="descripcion">Descripcion de la noticia</label>
-        <textarea id="descripcion" cols="100" rows="10" required [(ngModel)]="noticiaActual.descripcion"></textarea>
-        <!-- <input type="text" id="descripcion"> -->
-        <!-- no agrego el input date porque lo suyo seria que la fecha de publicación sea del dia que se cree la noticia -->
-        <label for="fecha">Fecha</label>
-        <input type="date" id="fecha" pattern="\d{4}-\d{2}-\d{2}" [(ngModel)]="noticiaActual.fecha">
-        <button (click)="agregarNoticia()">Agregar noticia</button>
-    </section>
-    <section id="seccion-noticias">
+<main class="bg-dark bg-gradient d-flex flex-column align-items-center py-3">
+    <select class="px-5 py-2 mb-3 rounded-pill float-start coolBoxShadowLight" [(ngModel)]="user">
+        <option value="suscriptor">Suscriptor</option>
+        <option value="editor">Editor</option>
+    </select>
+    @if (user === 'editor') {
+        <h3 class="text-white text-center px-5 py-2 mb-3 rounded-pill bg-primary coolBoxShadowLight">Agregar nueva noticia</h3>
+        <section class="bg-white px-5 py-3 d-flex flex-column justify-content-left align-items-left rounded mx-5 mb-5 coolBoxShadow border border-white" id="seccion-formulario">
+            <label class="rounded bg-secondary px-2 py-1 text-white" for="titulo">Titulo</label>
+            <input type="text" id="titulo" required [(ngModel)]="noticiaActual.titulo">
+    
+            <label class="rounded bg-secondary px-2 py-1 text-white coolBoxShadowLight" for="imagen">Imagen</label>
+            <input type="file" id="imagen" accept=".png,.jpg,.jpeg" required (change)="capturarImagen($event)" [(ngModel)]="noticiaActual.imagen">
+    
+            <label class="rounded bg-secondary px-2 py-1 text-white coolBoxShadowLight" for="descripcion">Descripcion de la noticia</label>
+            <textarea id="descripcion" cols="100" rows="10" wrap="hard" required [(ngModel)]="noticiaActual.descripcion"></textarea>
+            <!-- <input type="text" id="descripcion"> -->
+            <label class="rounded bg-secondary px-2 py-1 text-white coolBoxShadowLight" for="fecha">Fecha</label>
+            <input class="rounded" type="date" id="fecha" pattern="\d{4}-\d{2}-\d{2}" [(ngModel)]="noticiaActual.fecha">
+            <div class="d-flex align-items-center">
+                <button class="rounded-pill btn btn-success coolBoxShadowLight" (click)="agregarNoticia()">Agregar noticia</button>
+            </div>
+        </section>    
+    }
+    <h3 class="bg-primary rounded-pill px-5 py-2 mb-3 text-white coolBoxShadow">NOTICIAS</h3>
+    <section class="rounded mb-5 text-center coolBoxShadow bg-dark p-5" id="seccion-noticias">
+            @for (noticia of noticias; track $index) {
+                <article class="noticia bg-white d-flex flex-column align-items-center justify-content-between rounded p-3">
+                    @if (user === 'editor') {
+                        <button type="button" class="rounded-circle text-white border-1 border-danger bg-danger position-absolute top-0 end-0 me-1 mt-1" (click)="borrarNoticia($index)">X</button>
+                    }
+                    <p class="fw-bold bg-warning coolBoxShadowLight rounded-pill px-5 py-2">{{noticia.titulo}}</p>
+                    <img class="rounded coolBoxShadowLight mb-4" [src]="noticia.imagen" [alt]="noticia.titulo">
+                    <p class="coolBoxShadowLight rounded mb-5 text-start px-2 py-1">{{noticia.descripcion}}</p>
+                    <span class="bg-success text-white rounded-pill py-1 px-2 coolBoxShadowLight">{{noticia.fecha}}</span>
+                </article>
+            }
         <!-- por cada noticia un article -->        
-        @for (noticia of noticias; track $index) {
-            <article class="noticia">
-                <p>{{noticia.titulo}}</p>
-                <img [src]="noticia.imagen" [alt]="noticia.titulo">
-                <p>{{noticia.descripcion}}</p>
-                <span>{{noticia.fecha}}</span>
-            </article>
-        }
     </section>
 </main>
