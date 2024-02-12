@@ -27,7 +27,7 @@
             @for (noticia of noticias; track $index) {
                 <article class="noticia bg-white d-flex flex-column align-items-center justify-content-between rounded p-3">
                     @if (user === 'editor') {
-                        <button type="button" class="rounded-circle text-white border-1 border-danger bg-danger position-absolute top-0 end-0 me-1 mt-1" (click)="borrarNoticia($index)">X</button>
+                        <button type="button" class="rounded-circle text-center text-white border-1 border-danger bg-danger position-absolute top-0 end-0 me-1 mt-1" (click)="borrarNoticia($index)">X</button>
                     }
                     <p class="fw-bold bg-warning coolBoxShadowLight rounded-pill px-5 py-2">{{noticia.titulo}}</p>
                     <img class="rounded coolBoxShadowLight mb-4" [src]="noticia.imagen" [alt]="noticia.titulo">

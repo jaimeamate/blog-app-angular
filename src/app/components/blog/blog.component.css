@@ -20,6 +20,10 @@
         position: relative;
         width: 100%;
         overflow: hidden;
+        & button {
+            width: 30px;
+            height: 30px;
+        }
         & img{
             height: 400px;
             width: 600px;
